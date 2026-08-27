@@ -5,3 +5,22 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id              String    @id @default(uuid())
+  username        String    @unique
+  email           String    @unique
+  password_hash   String    
+  created_at      DateTime  @default(now())
+  threads         Thread[]
+}
+
+model Thread {
+  id              String    @id @default(uuid())
+  title           String
+  content         String
+  user_id         String
+  author          User      @relation(fields: [user_id], references: [id])
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
+}
