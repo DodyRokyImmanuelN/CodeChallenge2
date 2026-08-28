@@ -40,7 +40,7 @@ export class AuthService {
     if (!isMatch) {
       throw new UnauthorizedException('Email atau password salah!')
     }
-    const acces_token = this.jwtService.sign({ userId: user.id });
-    return { acces_token };
+    const access_token = this.jwtService.sign({ userId: user.id });
+    return { access_token };
   }
 }
