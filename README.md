@@ -176,6 +176,17 @@ Every endpoint below was exercised directly through Swagger UI (`/api-docs`), sh
 
 </details>
 
+<details>
+<summary><strong>Server Errors</strong></summary>
+
+**GET /threads — internal server error (500)**
+
+Simulated by temporarily stopping the database (`docker compose stop db`) and calling any endpoint, to demonstrate the global exception filter's fallback behavior for unrecognized/unexpected errors (falls back to a generic `500` instead of leaking internal details).
+
+![internal server error](docs/screenshots/21-internal-server-error-500.png)
+
+</details>
+
 ## API Endpoints
 
 All routes are prefixed with `/api`.
