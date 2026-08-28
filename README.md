@@ -80,6 +80,102 @@ To test protected endpoints in Swagger UI:
 3. Paste the token and confirm.
 4. All endpoints marked with a 🔒 icon will now automatically include your token.
 
+## API Documentation (Screenshots)
+
+Every endpoint below was exercised directly through Swagger UI (`/api-docs`), showing the request (method, URL, headers, body/params) and the actual server response for both success and error cases. Screenshots live in [`docs/screenshots/`](docs/screenshots). Endpoints with a request body have two images (`-request` showing what was sent, `-response` showing what came back); simple `GET` calls with no body fit in a single image.
+
+<details>
+<summary><strong>Auth</strong></summary>
+
+**POST /auth/register — success (201)**
+![register success request](docs/screenshots/01-register-success-201-request.png)
+![register success response](docs/screenshots/01-register-success-201-response.png)
+
+**POST /auth/register — duplicate email (400)**
+![register duplicate request](docs/screenshots/02-register-duplicate-400-request.png)
+![register duplicate response](docs/screenshots/02-register-duplicate-400-response.png)
+
+**POST /auth/register — validation error, invalid email format (400)**
+![register validation request](docs/screenshots/03-register-validation-400-request.png)
+![register validation response](docs/screenshots/03-register-validation-400-response.png)
+
+**POST /auth/login — success (200)**
+![login success request](docs/screenshots/04-login-success-200-request.png)
+![login success response](docs/screenshots/04-login-success-200-response.png)
+
+**POST /auth/login — wrong password (401)**
+![login wrong password request](docs/screenshots/05-login-wrong-password-401-request.png)
+![login wrong password response](docs/screenshots/05-login-wrong-password-401-response.png)
+
+**GET /auth/me — no token (401)**
+![me no token](docs/screenshots/06-me-no-token-401.png)
+
+**GET /auth/me — success (200)**
+![me success](docs/screenshots/13-me-success-200.png)
+
+</details>
+
+<details>
+<summary><strong>Users</strong></summary>
+
+**GET /users/:id — success (200)**
+![get user success request](docs/screenshots/07-get-user-success-200-request.png)
+![get user success response](docs/screenshots/07-get-user-success-200-response.png)
+
+**GET /users/:id — not found (404)**
+![get user not found request](docs/screenshots/08-get-user-notfound-404-request.png)
+![get user not found response](docs/screenshots/08-get-user-notfound-404-response.png)
+
+</details>
+
+<details>
+<summary><strong>Threads</strong></summary>
+
+**POST /threads — no token (401)**
+![create thread no token request](docs/screenshots/09-create-thread-no-token-401-request.png)
+![create thread no token response](docs/screenshots/09-create-thread-no-token-401-response.png)
+
+**GET /threads — list all (200)**
+![list threads request](docs/screenshots/10-list-threads-200-request.png)
+![list threads response](docs/screenshots/10-list-threads-200-response.png)
+
+**GET /threads/my-threads — no token (401)**
+![my threads no token](docs/screenshots/11-my-threads-no-token-401.png)
+
+**GET /threads/:id — not found (404)**
+![get thread not found request](docs/screenshots/12-get-thread-notfound-404-request.png)
+![get thread not found response](docs/screenshots/12-get-thread-notfound-404-response.png)
+
+**POST /threads — success (201)**
+![create thread success request](docs/screenshots/14-create-thread-success-201-request.png)
+![create thread success response](docs/screenshots/14-create-thread-success-201-response.png)
+
+**GET /threads/:id — success (200)**
+![get thread success request](docs/screenshots/15-get-thread-success-200-request.png)
+![get thread success response](docs/screenshots/15-get-thread-success-200-response.png)
+
+**GET /threads/my-threads — success (200)**
+![my threads success request](docs/screenshots/16-my-threads-success-200-request.png)
+![my threads success response](docs/screenshots/16-my-threads-success-200-response.png)
+
+**PUT /threads/:id — success, owner (200)**
+![update thread owner request](docs/screenshots/17-update-thread-owner-200-request.png)
+![update thread owner response](docs/screenshots/17-update-thread-owner-200-response.png)
+
+**PUT /threads/:id — forbidden, not owner (403)**
+![update thread forbidden request](docs/screenshots/18-update-thread-forbidden-403-request.png)
+![update thread forbidden response](docs/screenshots/18-update-thread-forbidden-403-response.png)
+
+**DELETE /threads/:id — forbidden, not owner (403)**
+![delete thread forbidden request](docs/screenshots/19-delete-thread-forbidden-403-request.png)
+![delete thread forbidden response](docs/screenshots/19-delete-thread-forbidden-403-response.png)
+
+**DELETE /threads/:id — success, owner (200)**
+![delete thread success request](docs/screenshots/20-delete-thread-success-200-request.png)
+![delete thread success response](docs/screenshots/20-delete-thread-success-200-response.png)
+
+</details>
+
 ## API Endpoints
 
 All routes are prefixed with `/api`.
